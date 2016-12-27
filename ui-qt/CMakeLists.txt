@@ -66,19 +66,19 @@ source_group( "src" FILES ${SOURCE_FILES} )
 
 
 
-add_executable( UserInterface
+add_executable( UserInterfaceQt
                 ${HEADER_FILES}
                 ${SOURCE_FILES} )
 
 
 
 ######### Link the libraries into the executable
-target_link_libraries( UserInterface intersimcore Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Charts Qt5::OpenGL )
+target_link_libraries( UserInterfaceQt intersimcore Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Charts Qt5::OpenGL )
 ### OSX and Unix need libdl
 if( APPLE )
-    target_link_libraries( UserInterface dl )
+    target_link_libraries( UserInterfaceQt dl )
 elseif( UNIX )
-    target_link_libraries( UserInterface dl )
+    target_link_libraries( UserInterfaceQt dl )
 elseif( WIN32 )
 endif()
 #############################################

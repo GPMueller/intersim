@@ -3,12 +3,6 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 #############################################
 set( CMAKE_DISABLE_SOURCE_CHANGES  ON )
 set( CMAKE_DISABLE_IN_SOURCE_BUILD ON )
-### Let CMake run moc on QT ui files automatically
-set( CMAKE_AUTOMOC ON )
-### Let CMake collect QT Resources automatically
-set( CMAKE_AUTORCC ON )
-### Let CMake handle .ui files automatically
-# set(CMAKE_AUTOUIC ON) # unfortunately, for this, .ui files ned to be next to corresponding .cpp files
 #############################################
 
 ######### Project Name ######################
@@ -41,12 +35,12 @@ add_executable( UserInterface
 
 
 ######### Link the libraries into the executable
-target_link_libraries( ${EXECUTABLE_NAME} intersimcore Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Charts Qt5::OpenGL )
+target_link_libraries( UserInterface intersimcore )
 ### OSX and Unix need libdl
 if( APPLE )
-    target_link_libraries( ${EXECUTABLE_NAME} dl )
+    target_link_libraries( UserInterface dl )
 elseif( UNIX )
-    target_link_libraries( ${EXECUTABLE_NAME} dl )
+    target_link_libraries( UserInterface dl )
 elseif( WIN32 )
 endif()
 #############################################
