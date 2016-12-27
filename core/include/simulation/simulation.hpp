@@ -1,4 +1,3 @@
-#pragma once
 #ifndef INTERSIM_SIMULATION_H
 #define INTERSIM_SIMULATION_H
 

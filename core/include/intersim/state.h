@@ -1,4 +1,3 @@
-#pragma once
 #ifndef INTERSIM_STATE_H
 #define INTERSIM_STATE_H
 #include "DLL_Define_Export.h"

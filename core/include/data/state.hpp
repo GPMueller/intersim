@@ -1,6 +1,10 @@
-#pragma once
 #ifndef INTERSIM_DATA_STATE_H
 #define INTERSIM_DATA_STATE_H
+
+#include <Eigen/Dense>
+#include <memory>
+
+typedef std::shared_ptr<Eigen::VectorXf> field;
 
 /*
 	State
@@ -11,7 +15,11 @@
 */
 struct State
 {
-	// std::shared_ptr<...> ...;
+	int nx;
+	int ny;
+	int nz;
+
+	field f;
 };
 
 #endif
