@@ -57,12 +57,15 @@ project( ${META_PROJECT_NAME} VERSION ${META_VERSION} )
 
 ######### Files #############################
 set(HEADER_FILES
-    include/intersim.hpp
+    include/data/state.hpp
+    include/intersim/state.h
+    include/simulation/simulation.hpp
 )
 source_group( "include" FILES ${HEADER_FILES} )
 
 set(SOURCE_FILES
-    src/intersim.cpp
+    src/intersim/state.cpp
+    src/simulation/simulation.cpp
 )
 source_group( "src" FILES ${SOURCE_FILES} )
 #############################################

@@ -6,6 +6,7 @@ set( CMAKE_DISABLE_IN_SOURCE_BUILD ON )
 #############################################
 
 ######### Options ###########################
+option( BUILD_UI_QT      "Build the QT User Interface."                                 OFF )
 option( CORE_USE_CUDA    "Use CUDA to speed up certain parts of the code."              OFF )
 option( CORE_BUILD_TEST  "Build small test project using the library."                  OFF )
 #############################################
@@ -40,4 +41,6 @@ project( intersim )
 
 
 add_subdirectory( core )
-# add_subdirectory( ui-qt )
+if ( BUILD_UI_QT )
+    add_subdirectory( ui-qt )
+endif()

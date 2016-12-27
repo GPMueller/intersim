@@ -73,12 +73,12 @@ add_executable( UserInterface
 
 
 ######### Link the libraries into the executable
-target_link_libraries( ${EXECUTABLE_NAME} intersimcore Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Charts Qt5::OpenGL )
+target_link_libraries( UserInterface intersimcore Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Charts Qt5::OpenGL )
 ### OSX and Unix need libdl
 if( APPLE )
-    target_link_libraries( ${EXECUTABLE_NAME} dl )
+    target_link_libraries( UserInterface dl )
 elseif( UNIX )
-    target_link_libraries( ${EXECUTABLE_NAME} dl )
+    target_link_libraries( UserInterface dl )
 elseif( WIN32 )
 endif()
 #############################################
