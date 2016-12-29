@@ -19,7 +19,7 @@ struct State
 	int ny;
 	int nz;
 
-	field f;
+	std::vector<field> data;
 };
 
 #endif
