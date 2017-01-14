@@ -1,11 +1,12 @@
-#include "solver.hpp"
+#include <simulation/solver.hpp>
 
-Solver::Solver(std::shared_ptr<State> state)
+Solver::Solver(std::shared_ptr<State> state_)
+: state(state_)
 {
 
 }
 
-void Solver::solve()
+void MatrixSolver::solve()
 {
 
 }

@@ -3,8 +3,9 @@
 
 #include <Eigen/Dense>
 #include <memory>
+#include <vector>
 
-typedef std::shared_ptr<Eigen::VectorXf> field;
+typedef Eigen::VectorXf field;
 
 /*
 	State
