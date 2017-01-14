@@ -4,15 +4,18 @@
 #include <memory>
 #include <data/state.hpp>
 
-class SimulationType
+namespace InterSim
 {
-public:
-	SimulationType(std::shared_ptr<State> state_) : state(state_) {};
+	class Simulation_Type
+	{
+	public:
+		Simulation_Type(std::shared_ptr<State> state_) : state(state_) {};
 
-    virtual void calculate_forces() = 0;
+		virtual void calculate_forces() = 0;
 
-private:
-	std::shared_ptr<State> state;
-};
+	private:
+		std::shared_ptr<State> state;
+	};
+}
 
 #endif

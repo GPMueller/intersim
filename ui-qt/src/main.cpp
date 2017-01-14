@@ -1,4 +1,4 @@
-#include <intersim/state.h>
+#include <InterSim/State.h>
 #include <memory>
 
 // Main

@@ -57,20 +57,21 @@ project( ${META_PROJECT_NAME} VERSION ${META_VERSION} )
 
 ######### Files #############################
 set(HEADER_FILES
-    include/data/state.hpp
-    include/intersim/state.h
-    include/simulation/simulation.hpp
-    include/simulation/simulation_type.hpp
-    include/simulation/solver.hpp
-	include/simulation/wave_simulation.hpp
+    include/InterSim/State.h
+    include/Data/State.hpp
+    include/Simulation/Simulation.hpp
+    include/Simulation/Simulation_type.hpp
+	include/Simulation/Simulation_Type_Wave.hpp
+    include/Solver/Solver.hpp
+    include/Solver/Solver_Matrix.hpp
 )
 source_group( "include" FILES ${HEADER_FILES} )
 
 set(SOURCE_FILES
-    src/intersim/state.cpp
-    #src/simulation/simulation.cpp
-    src/simulation/solver.cpp
-	src/simulation/wave_simulation.cpp
+    src/InterSim/State.cpp
+	src/Simulation/Simulation_Type_Wave.cpp
+    src/Solver/Solver.cpp
+    src/Solver/Solver_Matrix.cpp
 )
 source_group( "src" FILES ${SOURCE_FILES} )
 #############################################

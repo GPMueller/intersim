@@ -16,14 +16,6 @@ namespace InterSim
 	private:
 		std::shared_ptr<State> state;
 	};
-
-	class MatrixSolver : public Solver
-	{
-	public:
-		MatrixSolver(std::shared_ptr<State> state_);
-
-		void solve() override;
-	};
 }
 
 #endif

@@ -1,5 +1,5 @@
-#include <intersim/state.h>
-#include <data/state.hpp>
+#include <InterSim/State.h>
+#include <Data/State.hpp>
 
 State * State_Setup()
 {

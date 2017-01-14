@@ -1,2 +1,2 @@
 #include <catch.hpp>
-#include <intersim.hpp>
+#include <InterSim.hpp>
