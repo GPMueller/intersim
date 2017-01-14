@@ -62,14 +62,15 @@ set(HEADER_FILES
     include/simulation/simulation.hpp
     include/simulation/simulation_type.hpp
     include/simulation/solver.hpp
+	include/simulation/wave_simulation.hpp
 )
 source_group( "include" FILES ${HEADER_FILES} )
 
 set(SOURCE_FILES
     src/intersim/state.cpp
-    src/simulation/simulation.cpp
-    src/simulation/simulation_type.cpp
+    #src/simulation/simulation.cpp
     src/simulation/solver.cpp
+	src/simulation/wave_simulation.cpp
 )
 source_group( "src" FILES ${SOURCE_FILES} )
 #############################################

@@ -1,13 +1,12 @@
 #include <simulation/simulation.hpp>
 #include <intersim/state.h>
 #include <simulation/solver.hpp>
-#include <simulation/simulation_type.hpp>
 
-namespace Simulation
+namespace InterSim
 {
-    Simulation<class SimulationType, class Solver>::Simulation(std::shared_ptr<State> state_)
-		: Solver(state_)
-		, SimulationType(state_)
+	template <class T_Solver>
+    Simulation<T_Solver>::Simulation(std::shared_ptr<State> state_)
+		: T_Solver(state_)
 		, state(state_)
 		//, solver(state_)
     {

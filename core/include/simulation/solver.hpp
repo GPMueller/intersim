@@ -4,21 +4,26 @@
 #include <memory>
 #include <data/state.hpp>
 
-class Solver
+namespace InterSim
 {
-public:
-    Solver(std::shared_ptr<State> state_);
+	class Solver
+	{
+	public:
+		Solver(std::shared_ptr<State> state_);
 
-    virtual void solve() = 0;
+		virtual void solve() = 0;
 
-private:
-    std::shared_ptr<State> state;
-};
+	private:
+		std::shared_ptr<State> state;
+	};
 
-class MatrixSolver : public Solver
-{
-public:
-	void solve() override;
-};
+	class MatrixSolver : public Solver
+	{
+	public:
+		MatrixSolver(std::shared_ptr<State> state_);
+
+		void solve() override;
+	};
+}
 
 #endif

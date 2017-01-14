@@ -4,20 +4,28 @@
 #include <memory>
 #include <data/state.hpp>
 
-namespace Simulation
+namespace InterSim
 {
-	template <class SimulationType, class Solver>
-	class Simulation : public SimulationType, public Solver
+	template <class T_SimulationType, class T_Solver>
+	class Simulation : public T_SimulationType, public T_Solver
 	{
 	public:
-		Simulation(std::shared_ptr<State> state_);
+		Simulation(std::shared_ptr<State> state_)
+			: T_Solver(state_)
+			, T_SimulationType(state_)
+			, state(state_)
+		{
+		}
+
+		void iteration()
+		{
+			T_SimulationType::calculate_forces();
+			T_Solver::solve();
+		}
 
 	private:
 		std::shared_ptr<State> state;
-		//Solver solver;
 	};
-
-    void test();
 }
 
 #endif

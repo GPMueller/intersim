@@ -7,18 +7,12 @@
 class SimulationType
 {
 public:
-	SimulationType(std::shared_ptr<State> state_);
+	SimulationType(std::shared_ptr<State> state_) : state(state_) {};
 
     virtual void calculate_forces() = 0;
 
 private:
 	std::shared_ptr<State> state;
-};
-
-class WaveSimulation : public SimulationType
-{
-public:
-	void calculate_forces() override;
 };
 
 #endif

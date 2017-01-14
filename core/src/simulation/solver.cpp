@@ -1,12 +1,20 @@
 #include <simulation/solver.hpp>
 
-Solver::Solver(std::shared_ptr<State> state_)
-: state(state_)
+namespace InterSim
 {
+	Solver::Solver(std::shared_ptr<State> state_)
+		: state(state_)
+	{
 
-}
+	}
 
-void MatrixSolver::solve()
-{
+	MatrixSolver::MatrixSolver(std::shared_ptr<State> state_) : Solver(state_)
+	{
 
+	}
+
+	void MatrixSolver::solve()
+	{
+
+	}
 }
