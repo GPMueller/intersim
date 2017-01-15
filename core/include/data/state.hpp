@@ -6,6 +6,8 @@
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 
+#include <spdlog/spdlog.h>
+
 #include <memory>
 #include <vector>
 
@@ -30,6 +32,9 @@ struct State
 
 	std::vector<InterSim::field> data;
 	std::shared_ptr<InterSim::sparse_matrix> matrix;
+
+	// Log
+	std::shared_ptr<spdlog::logger> log;
 };
 
 #endif
