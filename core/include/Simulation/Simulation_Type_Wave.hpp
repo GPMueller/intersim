@@ -12,6 +12,7 @@ namespace InterSim
 	public:
 		Simulation_Type_Wave(std::shared_ptr<State> state_);
 
+		void setup_matrix();
 		void calculate_forces() override;
 	};
 }
