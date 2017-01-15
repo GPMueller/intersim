@@ -7,11 +7,12 @@ set( CMAKE_DISABLE_IN_SOURCE_BUILD ON )
 
 ######### Options ###########################
 option( CORE_USE_CUDA    "Use CUDA to speed up certain parts of the code."              OFF )
-option( CORE_BUILD_TEST  "Build small test project using the library."                  OFF )
+option( CORE_BUILD_TEST  "Build unit tests for the core library."                       OFF )
+option( CORE_BUILD_PYLIB "Build shared library for Python."                             ON  )
 #############################################
 
 ######### Meta information about the project
-set(META_PROJECT_NAME         "intersimcore")
+set(META_PROJECT_NAME         "InterSim")
 set(META_PROJECT_DESCRIPTION  "particle interactions")
 set(META_AUTHOR_ORGANIZATION  "")
 set(META_AUTHOR_DOMAIN        "https://github.com/GPMueller/intersim")
@@ -78,25 +79,47 @@ source_group( "src" FILES ${SOURCE_FILES} )
 
 
 
-######### libintersim ####################
+######### libInterSim ####################
 ### Build and Link Library
-if ( CORE_USE_CUDA )
-    include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/thirdparty)
+if( NOT CORE_USE_CUDA )
+	######### Tell CMake to create the object files
+	add_library( ${PROJECT_NAME} OBJECT ${HEADER_FILES} ${SOURCE_FILES} )
+	######### Tell CMake to create the static core library for the C++ UIs
+    add_library( ${PROJECT_NAME}Static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}> )
+	######### Tell CMake to create the shared core library for the Python UI
+    if( CORE_BUILD_PYLIB )
+        add_library( Py${PROJECT_NAME} SHARED $<TARGET_OBJECTS:${PROJECT_NAME}> )
+    endif( )
+else( )
+    include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/thirdparty )
     cuda_add_library( ${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} )
+    if( CORE_BUILD_PYLIB )
+        cuda_add_library( Py${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
+    endif( )
     target_link_libraries( ${PROJECT_NAME} ${CUDA_LIBRARIES} )
-else()
-    add_library( ${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} )
-endif()
+endif( )
 ### Include Directories
-target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/thirdparty)
+target_include_directories( ${PROJECT_NAME}Static PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories( ${PROJECT_NAME}Static PUBLIC ${PROJECT_SOURCE_DIR}/thirdparty)
 ### Properties
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_EXTENSIONS OFF)
+### Set library output paths for Python shared lib
+if( CORE_BUILD_PYLIB )
+    ### We want it to be placed under core/pyintersim/ s.t. it is directly part of the python core module/package
+	set( PYLIB_OUTPUT_DIR ${CMAKE_SOURCE_DIR}/core/pyintersim )
+    set_target_properties( Py${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PYLIB_OUTPUT_DIR} )
+    if ( MSVC )
+		foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
+			string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
+        	set_target_properties( Py${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${PYLIB_OUTPUT_DIR} )
+		endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
+    endif ( MSVC )
+endif( )
 ### Install
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(DIRECTORY include DESTINATION include/intersim)
+# install(TARGETS ${PROJECT_NAME}Static DESTINATION lib)
+# install(DIRECTORY include DESTINATION include/InterSim)
 #############################################
 
 

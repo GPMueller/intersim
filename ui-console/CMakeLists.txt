@@ -35,7 +35,7 @@ add_executable( UserInterface
 
 
 ######### Link the libraries into the executable
-target_link_libraries( UserInterface intersimcore )
+target_link_libraries( UserInterface InterSimStatic )
 ### OSX and Unix need libdl
 if( APPLE )
     target_link_libraries( UserInterface dl )
