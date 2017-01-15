@@ -10,6 +10,8 @@ option( BUILD_UI_QT      "Build the QT User Interface."                         
 option( BUILD_UI_CONSOLE "Build the QT User Interface."                                 ON  )
 option( CORE_USE_CUDA    "Use CUDA to speed up certain parts of the code."              OFF )
 option( CORE_BUILD_TEST  "Build small test project using the library."                  OFF )
+### Set the scalar type used in the core library
+set( CORE_SCALAR_TYPE float )
 #############################################
 
 

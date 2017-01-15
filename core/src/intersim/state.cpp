@@ -13,7 +13,7 @@ State * State_Setup()
 	state->ny = ny;
 	state->nz = nz;
 
-	state->data.emplace_back(nx*ny*nz);
+	//state->data.emplace_back(nx*ny*nz);
     
     // Return
     return state;

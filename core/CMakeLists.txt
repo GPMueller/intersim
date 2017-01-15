@@ -1,8 +1,8 @@
 ######### CMake Version #####################
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 #############################################
-set( CMAKE_DISABLE_SOURCE_CHANGES  ON )
-set( CMAKE_DISABLE_IN_SOURCE_BUILD ON )
+set( CMAKE_DISABLE_SOURCE_CHANGES  OFF )
+set( CMAKE_DISABLE_IN_SOURCE_BUILD ON  )
 #############################################
 
 ######### Options ###########################
@@ -55,6 +55,19 @@ project( ${META_PROJECT_NAME} VERSION ${META_VERSION} )
 #############################################
 
 
+######### Generate Core_Defines.h ################
+set( VERSION_STRING "${META_VERSION}" )
+set( VERSION_REVISION_STRING "${META_VERSION_REVISION}" )
+string( TOUPPER ${CORE_SCALAR_TYPE} CORE_SCALAR_TYPE_UPPERCASE )
+if ( CORE_USE_CUDA )
+	set ( CORE_DEFINE_CUDA "#define CORE_USE_CUDA" )
+endif( )
+if ( CORE_USE_THREADS )
+	set ( CORE_DEFINE_THREADS "#define CORE_USE_THREADS" )
+endif( )
+configure_file( ${PROJECT_SOURCE_DIR}/CMake/Core_Defines.h.in ${PROJECT_SOURCE_DIR}/include/Core_Defines.h )
+#############################################
+
 
 ######### Files #############################
 set(HEADER_FILES
@@ -99,6 +112,8 @@ else( )
     target_link_libraries( ${PROJECT_NAME} ${CUDA_LIBRARIES} )
 endif( )
 ### Include Directories
+target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/thirdparty)
 target_include_directories( ${PROJECT_NAME}Static PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_include_directories( ${PROJECT_NAME}Static PUBLIC ${PROJECT_SOURCE_DIR}/thirdparty)
 ### Properties

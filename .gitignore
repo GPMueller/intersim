@@ -1,5 +1,8 @@
 build/*
 
+### CMake-created files
+Core_Defines.h
+
 # Created by https://www.gitignore.io/api/c++,c,cmake,cuda,linux,windows,osx,python
 
 ### C++ ###
