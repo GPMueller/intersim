@@ -8,6 +8,8 @@
 
 namespace InterSim
 {
+	typedef Eigen::SparseLU<sparse_matrix> sparse_solver;
+
 	class Solver_Matrix : public Solver
 	{
 	public:
@@ -19,7 +21,7 @@ namespace InterSim
 		void set_matrix();
 
 		sparse_solver solver;
-		sparse_matrix A;
+		std::shared_ptr<sparse_matrix> A;
 		std::shared_ptr<field> b;
 		std::shared_ptr<field> x;
 	};

@@ -14,6 +14,6 @@ namespace InterSim
 
 	void Solver_Matrix::set_matrix()
 	{
-		solver.compute(A);
+		solver.compute(*A);
 	}
 }

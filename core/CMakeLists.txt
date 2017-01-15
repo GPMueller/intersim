@@ -72,7 +72,9 @@ configure_file( ${PROJECT_SOURCE_DIR}/CMake/Core_Defines.h.in ${PROJECT_SOURCE_D
 ######### Files #############################
 set(HEADER_FILES
     include/InterSim/State.h
+    include/InterSim/Simulation.h
     include/Data/State.hpp
+    include/Data/Data.hpp
     include/Simulation/Simulation.hpp
     include/Simulation/Simulation_type.hpp
 	include/Simulation/Simulation_Type_Wave.hpp
@@ -83,6 +85,8 @@ source_group( "include" FILES ${HEADER_FILES} )
 
 set(SOURCE_FILES
     src/InterSim/State.cpp
+    src/InterSim/Simulation.cpp
+    src/Data/Data.cpp
 	src/Simulation/Simulation_Type_Wave.cpp
     src/Solver/Solver.cpp
     src/Solver/Solver_Matrix.cpp

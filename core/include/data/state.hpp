@@ -11,9 +11,8 @@
 
 namespace InterSim
 {
-	typedef Eigen::Matrix<scalar, Eigen::Dynamic, Eigen::Dynamic> field;
+	typedef std::shared_ptr<Eigen::Matrix<scalar, Eigen::Dynamic, Eigen::Dynamic>> field;
 	typedef Eigen::SparseMatrix<scalar> sparse_matrix;
-	typedef Eigen::SparseLU<sparse_matrix> sparse_solver;
 }
 
 /*
@@ -30,6 +29,7 @@ struct State
 	int nz;
 
 	std::vector<InterSim::field> data;
+	std::shared_ptr<InterSim::sparse_matrix> matrix;
 };
 
 #endif
